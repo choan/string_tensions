@@ -26,11 +26,11 @@ StringTensions uses [NoteFrequencies](https://github.com/choan/note_frequencies)
 
 Get tension for known unit weight, length and pitch:
 
-    StringTensions.tension_for_pitch(0.00001418, 25.5, "e'"), 1
+    StringTensions.tension_for_pitch(0.00001418, 25.5, "e'")
 
 Get unit weight for known tension, length and pitch:
 
-    StringTensions.uw_for_pitch(10.4, 25.5, "e'"), 1
+    StringTensions.uw_for_pitch(10.4, 25.5, "e'")
 
 
 ## Contributing
