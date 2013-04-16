@@ -18,15 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
-Currently the library only accepts input in imperial units (length in inches, unit weight in lbs/inch, tension in lbs). Output is imperial too (unit weight in lbs/inch, tension in lbs).
-
-Should you need output in International System units, there are some conversors included.
+[ruby-units](https://github.com/olbrich/ruby-units) is used internally, so any combination of imperial and SI units is available. Results are returned as `Unit` instances (with imperial units, use `to` in order to convert to anything you are interested in). Default units are `lbs/in` for unit weights and `lbs` for tensions.
 
 StringTensions uses [NoteFrequencies](https://github.com/choan/note_frequencies) internally for converting pitches to frequencies.
 
 Get tension for known unit weight, length and pitch:
 
     StringTensions.tension_for_pitch(0.00001418, 25.5, "e'")
+    StringTensions.tension_for_pitch("0.253226 g/m", "0.6477 m", "e'")
 
 Get unit weight for known tension, length and pitch:
 

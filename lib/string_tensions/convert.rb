@@ -27,8 +27,19 @@ module StringTensions
       unit(lbs, 'lbs/inch').to('g/m').scalar.to_f
     end
   
-    def self.unit(qty, dim)
+    def self.unit(qty, dim = nil)
       ::Unit.new("#{qty} #{dim}")
+    end
+    
+    def self.auto(qty, units)
+      u = unit(qty)
+      if u.units.empty?
+        u = unit(qty, units)
+      end
+      if u.units != units
+        u = u.to(units)
+      end
+      u
     end
   
   end  

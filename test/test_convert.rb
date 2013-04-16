@@ -23,4 +23,10 @@ class ConvertTest < Test::Unit::TestCase
     assert_equal 0.00055997, round(StringTensions::Convert.g_m_to_lbs_inch(10), 8)
   end
   
+  def test_auto
+    assert_equal ::Unit.new('1 lbs/in'), StringTensions::Convert.auto("1 lbs/in", "lbs/in")
+    assert_equal ::Unit.new('1 lbs/in'), StringTensions::Convert.auto(1, "lbs/in")
+    assert_equal(::Unit.new('1 lbs/in'), StringTensions::Convert.auto("0.45359237 kg/in", 'lbs/in'))
+  end
+  
 end
