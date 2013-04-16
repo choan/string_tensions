@@ -50,6 +50,18 @@ class StringTensionsTest < Test::Unit::TestCase
     assert_equal round(ex.scalar, 2), round(res.scalar, 2)
   end
   
+  def test_uw_from_density
+    # TODO we need actual data to compare, next test assert this indirectly
+    # assert_equal ::Unit.new("2.36039e-05 lbs/in"), StringTensions.uw_from_density("1100 kg/m^3", "0.0275 in")
+    
+  end
   
+  def test_tension_from_density_and_gauge
+    # Arto's calculator says this should be "8.513 kg"
+    ex = ::Unit.new("8.50932 kg")
+    res = StringTensions.tension_for_pitch(StringTensions.uw_from_density("1300 kg/m^3", "0.5 mm"), "650 mm", "a'").to("kg")
+    assert_equal round(ex.scalar, 4), round(res.scalar, 4)
+    assert_equal ex.units, res.units
+  end
   
 end

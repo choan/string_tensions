@@ -26,6 +26,18 @@ module StringTensions
     Convert.unit(uw, 'lbs/in')
   end
   
+  def self.uw_from_density(density, gauge)
+    # TODO
+    # volume for 1 inch lineal length
+    density_lbs_inch3 = Convert.auto(density, 'lbs/in^3')
+    gauge_inch = Convert.auto(gauge, 'in')
+    puts density_lbs_inch3.scalar.to_f
+    volume = Math::PI * (gauge_inch / 2)**2 * ::Unit.new("1 in")
+    uw = volume * density_lbs_inch3 / ::Unit.new("1 in")
+    puts uw
+    uw
+  end
+  
   def self.uw_for_pitch(tension_lbs, length_inches, pitch)
     uw(tension_lbs, length_inches, freq_from_pitch(pitch))
   end

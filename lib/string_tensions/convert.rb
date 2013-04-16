@@ -3,6 +3,12 @@ require 'ruby-units'
 module StringTensions
   module Convert
   
+    # ::Unit.define("kg/m3") do |foobar|
+    #   foobar.definition   = Unit("1 kg") / Unit("1 m3")   # anything that results in a Unit object
+    #   foobar.aliases      = %w{kg/m3}                   # array of synonyms for the unit
+    #   foobar.display_name = "kg/m3"                        # How unit is displayed when output
+    # end
+  
     def self.kg_to_lbs(kg)
       unit(kg, 'kg').to('lbs').scalar.to_f
     end
