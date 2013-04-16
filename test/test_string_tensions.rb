@@ -6,33 +6,33 @@ class StringTensionsTest < Test::Unit::TestCase
 
   def test_tension_returns_lbs_accepts_unitless
     ex = ::Unit.new("10.38 lbf")
-    res = StringTensions.tension_for_pitch(0.00001418, 25.5, "e'")
+    res = StringTensions.tension_for_pitch(0.253226, 647.7, "e'")
     assert_equal ex.scalar, round(res.scalar, 2)
     assert_equal ex.units, res.units
     
     ex = ::Unit.new("11.7 lbf")
-    res = StringTensions.tension_for_pitch(0.00001418, 25.5, "f'")
+    res = StringTensions.tension_for_pitch(0.253226, 647.7, "f'")
     assert_equal ex.scalar, round(res.scalar, 1)
   end
   
   def test_tension_accepts_both_unit_and_unitless_params
     ex = ::Unit.new("10.38 lbf")
-    res = StringTensions.tension_for_pitch("0.00001418 lbs/inch", 25.5, "e'")
+    res = StringTensions.tension_for_pitch("0.00001418 lbs/inch", 647.7, "e'")
     assert_equal ex.scalar, round(res.scalar, 2) 
 
-    res = StringTensions.tension_for_pitch("0.00001418", "25.5 in", "e'")
+    res = StringTensions.tension_for_pitch(0.253226, "25.5 in", "e'")
     assert_equal ex.scalar, round(res.scalar, 2) 
   end
   
   def test_tension_autoconverts_units
     ex = ::Unit.new("10.38 lbf")
-    res = StringTensions.tension_for_pitch("0.253226 g/m", 25.5, "e'")
+    res = StringTensions.tension_for_pitch("0.253226 g/m", 647.7, "e'")
     assert_equal ex.scalar, round(res.scalar, 2) 
   end
   
   def test_mpl_returns_lbs_per_inch_and_accepts_unitless
     ex = ::Unit.new("0.000014207788554264654 lbs/in")
-    res = StringTensions.mpl_for_pitch(10.4, 25.5, "e'")
+    res = StringTensions.mpl_for_pitch(46.2615047987092, 647.7, "e'")
     assert_equal 'lbs/in', res.units
     assert_equal round(ex.scalar, 8), round(res.scalar, 8)
   end
@@ -41,7 +41,7 @@ class StringTensionsTest < Test::Unit::TestCase
     ex = ::Unit.new("0.000014207788554264654 lbs/in")
     res = StringTensions.mpl_for_pitch("10.4 lbf", "25.5 in", "e'")
     assert_equal 'lbs/in', res.units
-    assert_equal ex, res
+    assert_equal round(ex.scalar, 8), round(res.scalar, 8)
   end
   
   def test_mpl_autoconverts_units
