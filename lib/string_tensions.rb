@@ -4,14 +4,15 @@ require "note_frequencies"
 
 module StringTensions
   
-  K = 386.4
+  K = ::Unit.new("1 gee")
   
   def self.tension(uw, length, freq)
-    uw_lbs_inch = Convert.auto(uw, 'lbs/in').scalar
-    length_in_inches = Convert.auto(length, 'in').scalar
+    uw_lbs_inch = Convert.auto(uw, 'lbs/in')
+    length_in_inches = Convert.auto(length, 'in')
+    freq_hz = Convert.auto(freq, "Hz")
     # T (Tension) =  (UW  x (2 x L x F)**2) / 386.4
-    t = (uw_lbs_inch * (2 * length_in_inches * freq)**2) / K
-    Convert.unit(t, 'lbs')
+    t = (uw_lbs_inch * (2 * length_in_inches * freq_hz)**2)
+    t.to('lbf')
   end
   
   def self.tension_for_pitch(uw_lbs_inch, length_in_inches, pitch)
@@ -19,11 +20,12 @@ module StringTensions
   end
   
   def self.uw(tension, length_inches, freq)
-    tension_lbs = Convert.auto(tension, 'lbs').scalar
-    length_inches = Convert.auto(length_inches, 'in').scalar
+    tension_lbs = Convert.auto(tension, 'lbf')
+    length_inches = Convert.auto(length_inches, 'in')
+    freq_hz = Convert.auto(freq, "Hz")
     # UW (unit weight) =  (T x 386.4) / (2 x L x F)**2
-    uw = ((tension_lbs * K) / (2 * length_inches * freq)**2).to_f
-    Convert.unit(uw, 'lbs/in')
+    uw = ((tension_lbs) / (2 * length_inches * freq_hz)**2)
+    uw.to('lbs/in')
   end
   
   def self.uw_from_density(density, gauge)
@@ -31,10 +33,8 @@ module StringTensions
     # volume for 1 inch lineal length
     density_lbs_inch3 = Convert.auto(density, 'lbs/in^3')
     gauge_inch = Convert.auto(gauge, 'in')
-    puts density_lbs_inch3.scalar.to_f
     volume = Math::PI * (gauge_inch / 2)**2 * ::Unit.new("1 in")
     uw = volume * density_lbs_inch3 / ::Unit.new("1 in")
-    puts uw
     uw
   end
   

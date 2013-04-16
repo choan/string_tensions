@@ -1,6 +1,16 @@
 # StringTensions
 
-A library for calculating musical string tension (from known unit weight, length and pitch) and unit weight (from known tension, length and pitch).
+A library for various musical string calculations:
+
+* Tension (from known unit weight, length and pitch)
+
+* Unit weight (from known tension, length and pitch).
+
+* Unit weight (from known density and gauge)
+
+TODO:
+
+* Gauge (from known unit weight and density)
 
 ## Installation
 
@@ -18,7 +28,9 @@ Or install it yourself as:
 
 ## Usage
 
-[ruby-units](https://github.com/olbrich/ruby-units) is used internally, so any combination of imperial and SI units is available. Results are returned as `Unit` instances (with imperial units, use `to` in order to convert to anything you are interested in). Default units are `lbs/in` for unit weights and `lbs` for tensions.
+[ruby-units](https://github.com/olbrich/ruby-units) is used internally for all operations, so any combination of imperial and SI units is acceptable. Results are returned as `Unit` instances (with imperial units, use `to` in order to convert to anything you are interested in).
+
+Default units are `lbs/in` for unit weights and `lbf` for tensions.
 
 StringTensions uses [NoteFrequencies](https://github.com/choan/note_frequencies) internally for converting pitches to frequencies.
 
@@ -30,6 +42,10 @@ Get tension for known unit weight, length and pitch:
 Get unit weight for known tension, length and pitch:
 
     StringTensions.uw_for_pitch(10.4, 25.5, "e'")
+
+Get unit weight for known density and gauge:
+
+    StringTensions.uw_from_density("1300 kg/m^3", "0.5 mm")
 
 
 ## Contributing
