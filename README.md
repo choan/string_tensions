@@ -30,9 +30,7 @@ Or install it yourself as:
 
 [ruby-units](https://github.com/olbrich/ruby-units) is used internally for all operations, so any combination of imperial and SI units is acceptable. Results are returned as `Unit` instances (with imperial units, use `to` in order to convert to anything you are interested in).
 
-Default return units are `lbs/in` for mass per length and `lbf` for tension.
-
-Unitless arguments are considered:
+The following units are used for return values and unitless arguments:
 
 * N for tensions
 * kg/m3 for densities

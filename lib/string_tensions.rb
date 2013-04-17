@@ -10,7 +10,7 @@ module StringTensions
     freq = to_unit(freq, "Hz")
     # T (Tension) =  (mpl  x (2 x L x F)**2) / 386.4
     t = (mpl * (2 * length * freq)**2)
-    t.to('lbf')
+    t.to('N')
   end
 
   def self.tension_for_pitch(mpl, length, pitch)
@@ -23,7 +23,7 @@ module StringTensions
     freq = to_unit(freq, "Hz")
     # mpl (unit weight) =  (T x 386.4) / (2 x L x F)**2
     mpl = ((tension) / (2 * length * freq)**2)
-    mpl.to('lbs/in')
+    mpl.to('g/m')
   end
 
   def self.mpl_for_pitch(tension, length, pitch)
